@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.restfulApi.dao.BoardDAO">
+    <select id="atclSave" parameterType="com.study.restfulApi.bean.BoardBean">
+        INSERT INTO BOARD (
+            TITLE,
+            CONTENT,
+            REGDATE
+        ) values(
+            #{title},
+            #{content},
+            CURRENT_TIMESTAMP
+        )
+    </select>
+
+    <select id="atclList" resultType="com.study.restfulApi.bean.BoardBean">
+        SELECT
+            BRDID as brdId,
+            TITLE as title,
+            CONTENT as content,
+            FORMATDATETIME(REGDATE, 'yyyy-MM-dd HH:mm') as regDate
+        FROM BOARD
+    </select>
+
+    <select id="atclInfo" parameterType="string" resultType="com.study.restfulApi.bean.BoardBean">
+        SELECT
+            BRDID as brdId,
+            TITLE as title,
+            CONTENT as content,
+            FORMATDATETIME(REGDATE, 'yyyy-MM-dd HH:mm') as regDate
+        FROM BOARD
+        WHERE BRDID=#{brdId}
+    </select>
+
+    <update id="atclUpdate" parameterType="com.study.restfulApi.bean.BoardBean">
+        UPDATE BOARD
+        SET TITLE = #{title}, CONTENT = #{content}
+        WHERE BRDID = #{brdId}
+    </update>
+
+    <update id="partialUpdate">
+        UPDATE BOARD
+        <set>
+            <if test="title != null"> TITLE = #{title}, </if>
+            <if test="content != null"> CONTENT = #{content}, </if>
+        </set>
+        WHERE BRDID = #{brdId}
+    </update>
+</mapper>

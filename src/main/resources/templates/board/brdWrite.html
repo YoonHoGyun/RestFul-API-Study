@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글쓰기</title>
+    <link rel="stylesheet" th:href="@{/css/brdWrite.css}" type="text/css"/>
+</head>
+<body>
+<form action="/atclSave" method="post">
+    <table>
+        <tr><td><h2>글쓰기</h2></td></tr>
+        <tr><td class="header">Title</td></tr>
+        <tr><td><input type="text" id="title" name="title" placeholder="제목을 입력하세요" ></td></tr>
+        <tr><td class="header">Content</td></tr>
+        <tr><td><textarea id="content" name="content" placeholder="내용을 입력하세요"></textarea></td></tr>
+        <tr>
+            <td>
+                <input type="submit">
+                <button type="button" onclick="location.href='brdList'">뒤로가기</button>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+    <link rel="stylesheet" th:href="@{/css/brdList.css}" type="text/css"/>
+</head>
+<body>
+<table class="table">
+    <tr><td colspan="2"><h2>게시판</h2></td></tr>
+    <tr class="header">
+        <td class="num">번호</td>
+        <td class="title">제목</td>
+        <td>작성자</td>
+        <td>작성날짜</td>
+    </tr>
+    <tr th:each="atcl : ${atclList}">
+        <td class="text-center" th:text="${atcl.brdId}"></td>
+        <td class='title'>
+            <a th:href="@{|/board/brdView?brdId=${atcl.brdId}|}" th:text="${atcl.title}"></a>
+        </td>
+        <td class="text-center" th:style="'width:80px;'">관리자</td>
+        <td class="text-center" th:style="'width:200px;'" th:text="${atcl.regDate}"></td>
+    </tr>
+</table>
+<br>
+<table>
+    <tr>
+        <td><button onclick="location.href='brdWrite'">글쓰기</button></td>
+    </tr>
+</table>
+</body>
+</html>
