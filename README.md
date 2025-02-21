@@ -15,6 +15,7 @@ RestFul API를 통해 별도의 작성(수정)화면 없이 게시글을 등록/
 
  - 프로젝트 실행
  - Spring Boot 프로젝트 import 후 실행 (내장톰캣)
+ - DB는 H2 DataBase 사용
    
  1. 게시판 기본기능
     - 게시글 리스트 (http://localhost:8080/board/brdList)
