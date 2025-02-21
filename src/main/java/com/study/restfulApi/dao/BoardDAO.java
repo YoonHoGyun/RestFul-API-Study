@@ -14,4 +14,5 @@ public interface BoardDAO {
     BoardBean atclInfo(String brdId);
     void atclUpdate(BoardBean bean);
     void partialUpdate(@Param("brdId") String brdId, @Param("title") String title, @Param("content") String content);
+    void atclDelete(@Param("brdId") String brdId);
 }

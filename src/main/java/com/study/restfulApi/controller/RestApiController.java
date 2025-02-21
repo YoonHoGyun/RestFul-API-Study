@@ -76,4 +76,22 @@ public class RestApiController {
                     .body(Map.of("error", e.getMessage()));
         }
     }
+
+    // 게시글 삭제
+    @DeleteMapping("/delete/{brdId}")
+    public ResponseEntity<?> delete(@PathVariable String brdId) {
+        log.info(String.format("Delete API > brdId [%s]", brdId));
+
+        try {
+            boardService.atclDelete(brdId);
+
+            return ResponseEntity.ok(Map.of(
+                    "id", brdId,
+                    "message", "게시글이 삭제되었습니다."
+            ));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", e.getMessage()));
+        }
+    }
 }

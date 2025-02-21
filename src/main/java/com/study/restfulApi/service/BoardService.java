@@ -53,4 +53,13 @@ public class BoardService {
 
         boardDAO.partialUpdate(brdId, title, content);
     }
+
+    public void atclDelete(String brdId){
+        BoardBean board = boardDAO.atclInfo(brdId);
+        if (board == null) {
+            throw new RuntimeException("게시글을 찾을 수 없습니다.");
+        }
+
+        boardDAO.atclDelete(brdId);
+    }
 }
