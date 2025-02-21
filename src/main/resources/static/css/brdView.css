@@ -35,6 +35,7 @@ button {
     border-radius: 5px;
     padding-left: 10px;
     background-color: rgb(164, 199, 255);
+    margin-top: 5px;
 }
 button:active {
     width: 100px;
@@ -45,6 +46,7 @@ button:active {
     outline: 1.5px rgb(27, 76, 155) solid;
     padding-left: 10px;
     background-color: rgb(68, 136, 244);
+    margin-top: 5px;
 }
 
 .text-center {

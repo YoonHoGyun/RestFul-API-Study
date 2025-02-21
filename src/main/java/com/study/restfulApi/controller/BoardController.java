@@ -18,6 +18,11 @@ public class BoardController {
     @Autowired
     private BoardService boardService;
 
+    @GetMapping("/")
+    public String home() {
+        return "redirect:/board/brdList";
+    }
+
     /**
      * 게시판 목록 화면 이동
      * @return
