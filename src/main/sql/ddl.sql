@@ -1,5 +1,6 @@
-create table jpabegin.user (
-  email varchar(50) not null primary key,
-  name varchar(50),
-  create_date datetime
-) engine innodb character set utf8mb4;
+CREATE TABLE BOARD (
+    BRDID BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    TITLE VARCHAR(255),
+    CONTENT VARCHAR(2000),
+    REGDATE DATETIME
+);
