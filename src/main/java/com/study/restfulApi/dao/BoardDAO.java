@@ -15,4 +15,6 @@ public interface BoardDAO {
     void atclUpdate(BoardBean bean);
     void partialUpdate(@Param("brdId") String brdId, @Param("title") String title, @Param("content") String content);
     void atclDelete(@Param("brdId") String brdId);
+    void atclReset();
+    void seQuenceReset();
 }

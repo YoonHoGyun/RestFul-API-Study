@@ -18,7 +18,7 @@
             BRDID as brdId,
             TITLE as title,
             CONTENT as content,
-            FORMATDATETIME(REGDATE, 'yyyy-MM-dd HH:mm') as regDate
+            DATE_FORMAT(REGDATE, '%Y-%m-%d %p %h:%i') as regDate
         FROM BOARD
     </select>
 
@@ -27,7 +27,7 @@
             BRDID as brdId,
             TITLE as title,
             CONTENT as content,
-            FORMATDATETIME(REGDATE, 'yyyy-MM-dd HH:mm') as regDate
+            DATE_FORMAT(REGDATE, '%Y-%m-%d %p %h:%i') as regDate
         FROM BOARD
         WHERE BRDID=#{brdId}
     </select>
@@ -52,4 +52,12 @@
         FROM BOARD
         WHERE BRDID = #{brdId}
     </delete>
+
+    <delete id="atclReset">
+        DELETE FROM BOARD
+    </delete>
+
+    <update id="seQuenceReset">
+        ALTER TABLE board AUTO_INCREMENT = 1
+    </update>
 </mapper>

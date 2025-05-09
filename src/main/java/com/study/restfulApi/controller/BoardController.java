@@ -4,6 +4,7 @@ import com.study.restfulApi.bean.BoardBean;
 import com.study.restfulApi.service.BoardService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +19,12 @@ public class BoardController {
     @Autowired
     private BoardService boardService;
 
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
+
     @GetMapping("/")
     public String home() {
+        //redisTemplate.opsForValue().set("test", "1234");
         return "redirect:/board/brdList";
     }
 

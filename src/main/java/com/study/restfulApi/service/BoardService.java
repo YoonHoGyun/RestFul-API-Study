@@ -62,4 +62,9 @@ public class BoardService {
 
         boardDAO.atclDelete(brdId);
     }
+
+    public void atclReset(){
+        boardDAO.atclReset();
+        boardDAO.seQuenceReset();
+    }
 }
