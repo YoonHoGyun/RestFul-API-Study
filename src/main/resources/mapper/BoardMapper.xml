@@ -58,6 +58,6 @@
     </delete>
 
     <update id="seQuenceReset">
-        ALTER TABLE board AUTO_INCREMENT = 1
+        ALTER TABLE BOARD AUTO_INCREMENT = 1
     </update>
 </mapper>
