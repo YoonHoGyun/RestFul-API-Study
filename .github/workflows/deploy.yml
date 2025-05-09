@@ -9,6 +9,36 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Gitub Repository 파일 불러오기
+        uses: actions/checkout@v4
+
+      - name: JDK 17버전 설치
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: application.properties 파일 만들기
+        run: echo "${{ secrets.APPLICATION_PROPERTIES }}" > ./src/main/resources/application.properties
+
+      - name : ./gradlew 권한부여
+        run : chmod +x ./gradlew
+
+      - name: 빌드하기
+        run: ./gradlew clean build -x test
+
+      - name: 빌드된 파일 이름 변경하기
+        run: mv ./build/libs/*SNAPSHOT.jar ./restProject.jar
+
+      - name: SCP로 EC2에 빌드된 파일 전송하기
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_NAME }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          source: restProject.jar
+          target: /home/ubuntu/RestFul-API-Study/tobe
+
       - name: SSH로 EC2에 접속하기
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -17,9 +47,10 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script_stop: true
           script: |
-            cd /home/ubuntu/RestFul-API-Study
-            git pull origin master
-            chmod +x ./gradlew
-            ./gradlew clean build -x test
+            rm -rf /home/ubuntu/RestFul-API-Study/current
+            mkdir /home/ubuntu/RestFul-API-Study/current
+            mv /home/ubuntu/RestFul-API-Study/tobe/restProject.jar /home/ubuntu/RestFul-API-Study/current/restProject.jar
+            cd /home/ubuntu/RestFul-API-Study/current
             sudo fuser -k -n tcp 8080 || true
-            nohup java -jar build/libs/*SNAPSHOT.jar > ./output.log 2>&1 &
+            nohup java -jar restProject.jar > ./output.log 2>&1 &
+            rm -rf /home/ubuntu/RestFul-API-Study/tobe
