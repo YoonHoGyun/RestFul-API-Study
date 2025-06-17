@@ -5,7 +5,7 @@ RestFul API를 통해 별도의 작성(수정)화면 없이 게시글을 등록/
 🛠 주요 기능
 
  1. 게시판 기본기능
-   - 게시글 목록/작성/조회 화면 이동
+   - 게시글 목록/작성/수정/조회 화면 이동
    - 게시글 등록 기능
 
  2. RestFul API 기능
@@ -19,7 +19,7 @@ RestFul API를 통해 별도의 작성(수정)화면 없이 게시글을 등록/
    
  1. 게시판 기본기능
     - 게시글 리스트 (http://localhost:8080/board/brdList)
-    - 게시글 등록 (http://localhost:8080/board/brdWrite)
+    - 게시글 등록/수정 (http://localhost:8080/board/brdWrite)
     - 게시글 조회 (http://localhost:8080/board/brdView)
 
  2. API 테스트
