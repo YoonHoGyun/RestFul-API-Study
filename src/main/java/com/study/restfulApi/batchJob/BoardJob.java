@@ -17,7 +17,7 @@ public class BoardJob {
     private BoardService boardService;
 
     @Async
-    @Scheduled(cron = "0 */5 * * * *")
+    //@Scheduled(cron = "0 */5 * * * *")
     public void resetBoard(){
         log.info("============== 게시글 초기화 시작 ==============");
         try{

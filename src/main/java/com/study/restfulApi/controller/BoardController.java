@@ -39,7 +39,12 @@ public class BoardController {
      * @return
      */
     @GetMapping("/board/brdWrite")
-    public String brdWrite(){
+    public String brdWrite(Model model, String mode, String brdId){
+        model.addAttribute("mode", mode);
+        if(!"write".equals(mode)){
+            BoardBean atclInfo = boardService.atclInfo(brdId);
+            model.addAttribute("atclInfo", atclInfo);
+        }
         return "board/brdWrite";
     }
 
@@ -61,8 +66,8 @@ public class BoardController {
      * @return
      */
     @PostMapping("/atclSave")
-    public String atclSave(BoardBean bean){
-        boardService.atclSave(bean);
+    public String atclSave(BoardBean bean, String mode){
+        boardService.atclSave(bean, mode);
         return "redirect:/board/brdList";
     }
 }

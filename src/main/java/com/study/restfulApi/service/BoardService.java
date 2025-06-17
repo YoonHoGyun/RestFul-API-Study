@@ -16,9 +16,13 @@ public class BoardService {
     @Autowired
     private BoardDAO boardDAO;
 
-    public void atclSave(BoardBean bean){
-        log.info(String.format("title [%s] content [%s] ", bean.getTitle(), bean.getContent()));
-        boardDAO.atclSave(bean);
+    public void atclSave(BoardBean bean, String mode){
+        log.info(String.format("title [%s] content [%s] mode [%s]", bean.getTitle(), bean.getContent(), mode));
+        if("write".equals(mode)) {
+            boardDAO.atclSave(bean);
+        }else{
+            boardDAO.atclUpdate(bean);
+        }
     }
 
     public List<BoardBean> atclList(){
@@ -29,7 +33,7 @@ public class BoardService {
         return boardDAO.atclInfo(brdId);
     }
 
-    public void updateBoard(String brdId, String title, String content) {
+    public void updateAtcl(String brdId, String title, String content) {
         BoardBean board = boardDAO.atclInfo(brdId);
 
         if(board==null){

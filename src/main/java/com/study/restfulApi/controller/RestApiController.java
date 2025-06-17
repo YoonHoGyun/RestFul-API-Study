@@ -23,7 +23,7 @@ public class RestApiController {
         log.info(String.format("Save API > title [%s] content [%s] ", bean.getTitle(), bean.getContent()));
 
         try {
-            boardService.atclSave(bean);
+            boardService.atclSave(bean, "write");
 
             Map<String, Object> response = Map.of(
                     "title", bean.getTitle(),
@@ -44,7 +44,7 @@ public class RestApiController {
         log.info(String.format("Update API > brdId [%s] title [%s] content [%s] ", brdId, bean.getTitle(), bean.getContent()));
 
         try {
-            boardService.updateBoard(brdId, bean.getTitle(), bean.getContent());
+            boardService.updateAtcl(brdId, bean.getTitle(), bean.getContent());
 
             return ResponseEntity.ok(Map.of(
                     "brdId", brdId,

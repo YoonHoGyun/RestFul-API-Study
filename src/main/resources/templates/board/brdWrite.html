@@ -7,16 +7,19 @@
     <link rel="stylesheet" th:href="@{/css/brdWrite.css}" type="text/css"/>
 </head>
 <body>
-<form action="/atclSave" method="post">
+<form id="atclForm" th:action="@{/atclSave(mode=${mode})}" method="post">
+    <th:block th:if="${mode != 'write'}">
+        <input type="hidden" name="brdId" th:value="${atclInfo.brdId}" />
+    </th:block>
     <table>
-        <tr><td><h2>글쓰기</h2></td></tr>
+        <tr><td><h2 th:text="${mode} == 'write' ? '글쓰기' : '글수정'"></h2></td></tr>
         <tr><td class="header">Title</td></tr>
-        <tr><td><input type="text" id="title" name="title" placeholder="제목을 입력하세요" ></td></tr>
+        <tr><td><input type="text" id="title" name="title" placeholder="제목을 입력하세요" th:value="${mode == 'modify'} ? ${atclInfo.title} : ''"></td></tr>
         <tr><td class="header">Content</td></tr>
-        <tr><td><textarea id="content" name="content" placeholder="내용을 입력하세요"></textarea></td></tr>
+        <tr><td><textarea id="content" name="content" placeholder="내용을 입력하세요" th:text="${mode == 'modify'} ? ${atclInfo.content} : ''"></textarea></td></tr>
         <tr>
             <td>
-                <input type="submit" value="등록">
+                <input id="save" type="submit" th:value="${mode} == 'write' ? '등록' : '수정'" >
                 <button type="button" onclick="location.href='brdList'">뒤로가기</button>
             </td>
         </tr>

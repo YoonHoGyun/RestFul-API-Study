@@ -13,7 +13,12 @@
         <tr><td class="title" th:text="${atclInfo.title}"></td></tr>
         <tr><td>Content</td></tr>
         <tr><td class="content" th:text="${atclInfo.content}"></td></tr>
-        <tr><td><button onclick="location.href='brdList'">뒤로가기</button></td></tr>
+        <tr>
+            <td>
+                <button type="button" th:onclick="|location.href='@{/board/brdWrite(mode='modify', brdId=${atclInfo.brdId})}'|">수정</button>
+                <button class="back" type="button" onclick="location.href='brdList'" style="float:right">뒤로가기</button>
+            </td>
+        </tr>
     </table>
 </body>
 </html>
